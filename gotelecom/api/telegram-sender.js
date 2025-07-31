@@ -1,6 +1,17 @@
 // Файл: /api/telegram-sender.js
 
 export default async function handler(request, response) {
+  // --- ДОБАВЛЕНО: Разрешаем запросы с других доменов (CORS) ---
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Браузер может сначала отправить OPTIONS запрос для проверки
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end();
+  }
+  // --- КОНЕЦ БЛОКА CORS ---
+
   // 1. Проверяем, что это POST-запрос
   if (request.method !== 'POST') {
     return response.status(405).json({ error: 'Method Not Allowed' });
