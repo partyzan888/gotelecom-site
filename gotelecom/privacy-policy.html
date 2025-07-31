@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Политика конфиденциальности - Go!Telecom</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='50'%20fill='%23111827'/%3E%3Ctext%20x='50%25'%20y='50%25'%20dominant-baseline='middle'%20text-anchor='middle'%20font-family='Lora,%20serif'%20font-size='40'%20font-weight='bold'%20fill='white'%3EGo!%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #111827; /* Gray-900 */
+            font-weight: 400;
+            background-color: #f9fafb; /* Gray-50 */
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Lora', serif;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #111827;
+            padding-bottom: 4px;
+            font-size: 0.875rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #111827;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .footer-link {
+            position: relative;
+            text-decoration: none;
+            padding-bottom: 4px;
+            color: #4b5563; /* Gray-600 */
+            font-size: 0.875rem;
+            transition: color 0.3s ease-in-out;
+        }
+        .footer-link:hover {
+            color: #111827;
+        }
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #111827;
+            transition: all 0.3s ease-in-out;
+        }
+        .footer-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        /* Анимация появления */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Кнопка "Наверх" */
+        #to-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #111827;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            width: 44px;
+            height: 44px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        #to-top-button:hover {
+            background-color: #000;
+            transform: scale(1.05);
+        }
+        /* Стили для контента политики */
+        .policy-content h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+         .policy-content p, .policy-content li {
+            color: #4b5563; /* Gray-600 */
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .policy-content ul {
+            list-style-position: inside;
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-gray-50 z-50">
+        <div class="container max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-base font-medium tracking-wider"><span class="font-bold">Go!</span> Telecom</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="services.html" class="nav-link font-semibold">Услуги</a>
+                <a href="about.html" class="nav-link font-semibold">О компании</a>
+                <a href="portfolio.html" class="nav-link font-semibold">Проекты</a>
+                <a href="contact.html" class="nav-link font-semibold">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-28">
+            <div class="container max-w-6xl mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-serif max-w-3xl mx-auto tracking-tight">Политика конфиденциальности</h1>
+            </div>
+        </section>
+
+        <!-- Policy Content Section -->
+        <section class="pb-20 md:pb-28 bg-white reveal">
+            <div class="container max-w-4xl mx-auto px-6 policy-content">
+                <h3>1. Общие положения</h3>
+                <p>1.1. Настоящая Политика конфиденциальности и обработки персональных данных (далее – Политика) разработана в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» и действует в отношении всей информации, которую ИП Страмоусов А.В. (далее – Оператор) может получить о Пользователе во время использования им сайта https://gotelecom.ru/ (далее – Сайт).</p>
+                <p>1.2. Использование Сайта означает безоговорочное согласие Пользователя с настоящей Политикой и указанными в ней условиями обработки его персональной информации. В случае несогласия с этими условиями Пользователь должен воздержаться от использования Сайта.</p>
+
+                <h3>2. Персональные данные Пользователей</h3>
+                <p>2.1. В рамках настоящей Политики под «персональными данными Пользователя» понимаются:</p>
+                <ul>
+                    <li>Персональная информация, которую Пользователь предоставляет о себе самостоятельно при оставлении заявки (имя, номер телефона, адрес электронной почты).</li>
+                    <li>Данные, которые автоматически передаются сервисами Сайта, в том числе IP-адрес, данные файлов cookie, информация о браузере, дата и время доступа к сервисам.</li>
+                </ul>
+                <p>2.2. Настоящая Политика применима только к информации, обрабатываемой в ходе использования Сайта. Оператор не контролирует и не несет ответственность за обработку информации сайтами третьих лиц.</p>
+
+                <h3>3. Цели сбора и обработки персональных данных</h3>
+                <p>3.1. Оператор собирает и хранит только те персональные данные, которые необходимы для предоставления услуг или исполнения соглашений с Пользователем.</p>
+                <p>3.2. Персональную информацию Пользователя Оператор обрабатывает в следующих целях:</p>
+                <ul>
+                    <li>Идентификация стороны в рамках оказания услуг.</li>
+                    <li>Связь с Пользователем, в том числе направление уведомлений, запросов и информации, касающихся использования Сайта, а также обработка запросов и заявок от Пользователя.</li>
+                    <li>Улучшение качества Сайта и разработка новых услуг.</li>
+                    <li>Проведение статистических исследований на основе обезличенных данных.</li>
+                </ul>
+
+                <h3>4. Условия обработки и передачи данных</h3>
+                <p>4.1. В отношении персональной информации Пользователя сохраняется ее конфиденциальность, кроме случаев добровольного предоставления Пользователем информации о себе для общего доступа.</p>
+                <p>4.2. Оператор вправе передать персональную информацию Пользователя третьим лицам только в случаях, предусмотренных законодательством РФ.</p>
+                
+                <h3>5. Защита персональных данных</h3>
+                <p>5.1. Оператор принимает необходимые организационные и технические меры для защиты персональной информации Пользователя от неправомерного доступа, уничтожения, изменения, копирования и распространения.</p>
+
+                <h3>6. Изменение и удаление данных</h3>
+                <p>6.1. Пользователь может в любой момент изменить или потребовать удаления предоставленной им персональной информации, обратившись к Оператору по электронной почте info@gotelecom.ru.</p>
+
+                <h3>7. Заключительные положения</h3>
+                <p>7.1. Оператор имеет право вносить изменения в настоящую Политику. Новая редакция вступает в силу с момента ее размещения на Сайте.</p>
+                <p>7.2. Действующая редакция постоянно доступна на странице по адресу: https://gotelecom.ru/privacy-policy.</p>
+                
+                <h3>8. Реквизиты Оператора</h3>
+                <p>ИП Страмоусов Алексей Владимирович<br>
+                ИНН: 234805961496<br>
+                ОГРН: 309234818900020<br>
+                Адрес: г. Краснодар, ул. Монтажников, 1/4, офис 203<br>
+                Email: info@gotelecom.ru</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50">
+        <div class="container max-w-6xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-start text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <a href="index.html" class="text-base font-medium tracking-wider"><span class="font-bold">Go!</span> Telecom</a>
+                    <p class="text-sm text-gray-500 mt-4">© 2009-2025 Go! Telecom. Все права защищены.</p>
+                </div>
+                <div class="flex space-x-16">
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="services.html" class="footer-link">Услуги</a></li>
+                        <li><a href="about.html" class="footer-link">О компании</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Проекты</a></li>
+                        <li><a href="contact.html" class="footer-link">Контакты</a></li>
+                    </ul>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="privacy-policy.html" class="footer-link">Политика конфиденциальности</a></li>
+                        <li><a href="#" class="footer-link">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="to-top-button" title="Наверх">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+        // --- Back to Top Button ---
+        const toTopButton = document.getElementById('to-top-button');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                toTopButton.style.display = "flex";
+            } else {
+                toTopButton.style.display = "none";
+            }
+        });
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // --- Smooth Section Reveal ---
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(elem => {
+            revealObserver.observe(elem);
+        });
+    </script>
+
+</body>
+</html>

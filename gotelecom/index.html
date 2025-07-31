@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="yandex-verification" content="52820feddeb852ee" />
+    <title>Go! Telecom - Инновации и IT-решения</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20fill='%23000000'/%3E%3Ctext%20x='50%25'%20y='50%25'%20dominant-baseline='middle'%20text-anchor='middle'%20font-family='Lora,%20serif'%20font-size='40'%20font-weight='bold'%20fill='white'%3EGo!%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #000; /* Black */
+            font-weight: 400;
+            background-color: #f9fafb; /* Gray-50 */
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Lora', serif;
+        }
+        .btn-dark {
+            background-color: #000; /* Black */
+            color: white;
+            padding: 0.625rem 1.25rem; /* 10px 20px */
+            border-radius: 0.25rem;
+            font-weight: 500;
+            font-size: 0.875rem; /* 14px */
+            transition: background-color 0.3s;
+        }
+        .btn-dark:hover {
+            background-color: #374151; /* Gray-700 */
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #000; /* Black */
+            padding-bottom: 4px;
+            font-size: 0.875rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #000; /* Black */
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .footer-link {
+            position: relative;
+            text-decoration: none;
+            padding-bottom: 4px;
+            color: #4b5563; /* Gray-600 */
+            font-size: 0.875rem;
+            transition: color 0.3s ease-in-out;
+        }
+        .footer-link:hover {
+            color: #000; /* Black */
+        }
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #000; /* Black */
+            transition: all 0.3s ease-in-out;
+        }
+        .footer-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .asterisk {
+            font-family: serif;
+            font-size: 1.5rem;
+            color: #9ca3af; /* Gray-400 */
+        }
+        /* Анимация появления */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Кнопка "Наверх" */
+        #to-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #000; /* Black */
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            width: 44px;
+            height: 44px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        #to-top-button:hover {
+            background-color: #374151; /* Gray-700 */
+            transform: scale(1.05);
+        }
+        /* Слайдер отзывов */
+        .testimonial-slide {
+            transition: opacity 0.5s ease-in-out;
+        }
+        /* Эффект приподнимания для услуг */
+        .service-item {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-gray-50 z-50">
+        <div class="container max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html">
+                <img src="img/logo_gt.png" alt="Go!Telecom Logo" class="h-16" onerror="this.onerror=null;this.src='https://placehold.co/240x64/000000/FFFFFF?text=Go!Telecom';">
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="about.html" class="nav-link font-semibold">О компании</a>
+                <a href="services.html" class="nav-link font-semibold">Услуги</a>                
+                <a href="portfolio.html" class="nav-link font-semibold">Проекты</a>
+                <a href="contact.html" class="nav-link font-semibold">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-28">
+            <div class="container max-w-6xl mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-serif max-w-3xl mx-auto tracking-tight">Стремление к инновациям и стабильности</h1>
+                <p class="max-w-xl mx-auto mt-5 text-base text-gray-700">Мы создаем и поддерживаем IT-инфраструктуру, которая сочетает в себе передовые технологии, надежность и функциональность для вашего бизнеса.</p>
+                <div class="mt-8">
+                    <a href="#about" class="btn-dark">О нас</a>
+                </div>
+            </div>
+            <div class="container max-w-6xl mx-auto px-6 mt-16">
+                <img src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=2070&auto=format&fit=crop" alt="[Современный офис с технологиями]" class="w-full h-auto object-cover rounded-md shadow-lg">
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 md:py-28 bg-white reveal">
+            <div class="container max-w-6xl mx-auto px-6">
+                <div class="text-center">
+                    <div class="asterisk mb-4">*</div>
+                    <h2 class="text-3xl md:text-4xl font-serif max-w-3xl mx-auto">Страсть к созданию IT-пространств</h2>
+                    <p class="max-w-2xl mx-auto mt-4 text-gray-600">От комплексного обслуживания инфраструктуры до разработки и внедрения передовых систем.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-x-12 gap-y-16 mt-16">
+                    <div class="service-item p-6 rounded-lg">
+                        <div class="w-10 h-10 text-gray-400 mb-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 00-.12-1.03l-2.268-9.64a3.375 3.375 0 00-3.285-2.602H7.92a3.375 3.375 0 00-3.285 2.602l-2.268 9.64a4.5 4.5 0 00-.12 1.03v.228m19.5 0a3 3 0 01-3 3H5.25a3 3 0 01-3-3m19.5 0a3 3 0 00-3-3H5.25a3 3 0 00-3 3m16.5 0h.008v.008h-.008v-.008zm-3 0h.008v.008h-.008v-.008z" /></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">IT-инфраструктура и аутсорсинг</h3>
+                        <p class="text-gray-600">Комплексное обслуживание и поддержка ваших серверов, сетей и рабочих мест. Экспертиза от Go! Telecom.</p>
+                    </div>
+                    <div class="service-item p-6 rounded-lg">
+                        <div class="w-10 h-10 text-gray-400 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9A2.25 2.25 0 0013.5 5.25h-9A2.25 2.25 0 002.25 7.5v9A2.25 2.25 0 004.5 18.75z" /></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Системы видеонаблюдения</h3>
+                        <p class="text-gray-600">Проектирование, монтаж и настройка современных систем безопасности для контроля и защиты ваших активов.</p>
+                    </div>
+                    <div class="service-item p-6 rounded-lg">
+                        <div class="w-10 h-10 text-gray-400 mb-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.115 5.19l.319 1.913A6 6 0 0012 12h0a6 6 0 005.566-4.897l.319-1.913m-11.482 0A9.998 9.998 0 0012 15a9.998 9.998 0 005.885-9.81m-11.482 0c.09.55.223 1.08.386 1.59m10.71 0c.163-.51.296-1.04.386-1.59m-11.482 0h11.482" /></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Локальные сети (ЛВС)</h3>
+                        <p class="text-gray-600">Построение надежных и быстрых сетей, которые являются фундаментом для эффективной работы вашей компании.</p>
+                    </div>
+                    <div class="service-item p-6 rounded-lg">
+                        <div class="w-10 h-10 text-gray-400 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 100 15 7.5 7.5 0 000-15zM21 21l-5.197-5.197" /></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">IT-консалтинг</h3>
+                        <p class="text-gray-600">Анализ и оптимизация вашей IT-стратегии для достижения максимальной эффективности и снижения затрат.</p>
+                    </div>
+                    <div class="service-item p-6 rounded-lg">
+                        <div class="w-10 h-10 text-gray-400 mb-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Разработка сайтов</h3>
+                        <p class="text-gray-600">Создание современных и функциональных веб-решений для представления вашего бизнеса в сети.</p>
+                    </div>
+                    <div class="service-item p-6 rounded-lg">
+                        <div class="w-10 h-10 text-gray-400 mb-2">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" /></svg>
+                        </div>
+                        <h3 class="text-lg font-semibold mb-2">Искусственный интеллект</h3>
+                        <p class="text-gray-600">Внедрение и применение технологий ИИ для автоматизации бизнес-процессов и анализа данных.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources/Features Section -->
+        <section id="about" class="py-20 md:py-28 bg-gray-50 reveal">
+            <div class="container max-w-6xl mx-auto px-6">
+                 <div class="text-center">
+                    <div class="asterisk mb-4">*</div>
+                    <h2 class="text-3xl md:text-4xl font-serif max-w-3xl mx-auto">Массив ресурсов</h2>
+                    <p class="max-w-2xl mx-auto mt-4 text-gray-600">Наши компетенции и инструменты для решения ваших задач.</p>
+                </div>
+                <div class="mt-16 space-y-16">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h3 class="font-serif text-2xl mb-4">Экспертная поддержка Go! Telecom</h3>
+                            <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Проактивный мониторинг 24/7</li>
+                                <li>Быстрое реагирование на инциденты</li>
+                                <li>Консультации и развитие IT-стратегии</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="[Аналитика и данные на экране]" class="rounded-md shadow-lg">
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="md:order-2">
+                            <h3 class="font-serif text-2xl mb-4">Современное оборудование и ПО</h3>
+                            <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Подбор и поставка сертифицированного оборудования</li>
+                                <li>Лицензирование и внедрение программного обеспечения</li>
+                                <li>Гарантийное и постгарантийное обслуживание</li>
+                            </ul>
+                        </div>
+                        <div class="md:order-1">
+                            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop" alt="[Команда работает с оборудованием]" class="rounded-md shadow-lg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="py-32 md:py-44 bg-black text-white reveal">
+            <div id="testimonial-slider" class="container max-w-6xl mx-auto px-6 text-center relative h-48 flex items-center justify-center">
+                
+                <div class="testimonial-slide absolute w-full">
+                    <h3 class="font-serif italic text-2xl md:text-3xl max-w-3xl mx-auto leading-relaxed">"Go! Telecom сэкономил нам тысячи человеко-часов благодаря проактивному подходу и тем идеям, о которых мы даже не задумывались."</h3>
+                    <p class="mt-8 font-medium tracking-wider">Игорь Абдуллаев</p>
+                    <p class="text-sm text-gray-400 tracking-wider">Генеральный директор ООО "Агрофирма Кубань"</p>
+                </div>
+
+                <div class="testimonial-slide absolute w-full opacity-0">
+                    <h3 class="font-serif italic text-2xl md:text-3xl max-w-3xl mx-auto leading-relaxed">"Благодаря новой системе видеонаблюдения мы смогли значительно повысить безопасность на объекте. Профессиональный подход и качественное исполнение."</h3>
+                    <p class="mt-8 font-medium tracking-wider">Светлана Кучина</p>
+                    <p class="text-sm text-gray-400 tracking-wider">Директор Ильского Дома Культуры</p>
+                </div>
+
+                <div class="testimonial-slide absolute w-full opacity-0">
+                    <h3 class="font-serif italic text-2xl md:text-3xl max-w-3xl mx-auto leading-relaxed">"Надежная и быстрая сеть — ключевой фактор нашей работы. Команда Go! Telecom справилась с задачей на отлично, рекомендуем!"</h3>
+                    <p class="mt-8 font-medium tracking-wider">Алексей Зубков</p>
+                    <p class="text-sm text-gray-400 tracking-wider">Руководитель "Кубанская крупяная компания"</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section id="contact" class="py-24 md:py-32 bg-gray-50 reveal">
+            <div class="container max-w-6xl mx-auto px-6">
+                <div class="max-w-3xl mx-auto bg-white px-10 py-16 md:px-16 md:py-24 rounded-lg shadow-sm">
+                    <div class="text-center">
+                        <h2 class="text-3xl md:text-4xl font-serif max-w-3xl mx-auto">Свяжитесь с нами</h2>
+                        <p class="max-w-2xl mx-auto mt-4 text-gray-600">Готовы обсудить ваш проект? Оставьте ваши данные, и мы свяжемся с вами для обсуждения вашего проекта или ответа на любые вопросы.</p>
+                    </div>
+                    <div class="mt-12 text-center">
+                        <a href="contact.html" class="btn-dark">Отправить заявку</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50">
+        <div class="container max-w-6xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-start text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <a href="index.html" class="text-base font-medium tracking-wider"><span class="font-bold">Go!</span> Telecom</a>
+                    <p class="text-sm text-gray-500 mt-4">© 2009-2025 Go! Telecom.</p>
+                    <p class="text-sm text-gray-500">Все права защищены.</p>
+                </div>
+                <div class="flex space-x-16">
+                    <ul class="space-y-3 text-sm font-semibold">                        
+                        <li><a href="about.html" class="footer-link">О компании</a></li>
+                        <li><a href="services.html" class="footer-link">Услуги</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Проекты</a></li>
+                        <li><a href="contact.html" class="footer-link">Контакты</a></li>
+                    </ul>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="privacy-policy.html" class="footer-link">Политика конфиденциальности</a></li>
+                        <li><a href="terms-of-use.html" class="footer-link">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="to-top-button" title="Наверх">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+        // --- Back to Top Button ---
+        const toTopButton = document.getElementById('to-top-button');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                toTopButton.style.display = "flex";
+            } else {
+                toTopButton.style.display = "none";
+            }
+        });
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // --- Smooth Section Reveal ---
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(elem => {
+            revealObserver.observe(elem);
+        });
+
+        // --- Testimonial Slider ---
+        const slides = document.querySelectorAll('.testimonial-slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        if (slides.length > 1) {
+            setInterval(nextSlide, 5000); // Смена слайда каждые 5 секунд
+        }
+        showSlide(currentSlide);
+
+    </script>
+
+</body>
+</html>

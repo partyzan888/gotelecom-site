@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - Go! telecom</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='50'%20fill='%23111827'/%3E%3Ctext%20x='50%25'%20y='50%25'%20dominant-baseline='middle'%20text-anchor='middle'%20font-family='Lora,%20serif'%20font-size='40'%20font-weight='bold'%20fill='white'%3EGo!%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #111827; /* Gray-900 */
+            font-weight: 400;
+            background-color: #f9fafb; /* Gray-50 */
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Lora', serif;
+        }
+        .btn-dark {
+            background-color: #111827; /* Gray-900 */
+            color: white;
+            padding: 0.625rem 1.25rem; /* 10px 20px */
+            border-radius: 0.25rem;
+            font-weight: 500;
+            font-size: 0.875rem; /* 14px */
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .btn-dark:hover {
+            background-color: #000;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #111827;
+            padding-bottom: 4px;
+            font-size: 0.875rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #111827;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .footer-link {
+            position: relative;
+            text-decoration: none;
+            padding-bottom: 4px;
+            color: #4b5563; /* Gray-600 */
+            font-size: 0.875rem;
+            transition: color 0.3s ease-in-out;
+        }
+        .footer-link:hover {
+            color: #111827;
+        }
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #111827;
+            transition: all 0.3s ease-in-out;
+        }
+        .footer-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .asterisk {
+            font-family: serif;
+            font-size: 1.5rem;
+            color: #9ca3af; /* Gray-400 */
+        }
+        /* Анимация появления */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Кнопка "Наверх" */
+        #to-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #111827;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            width: 44px;
+            height: 44px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        #to-top-button:hover {
+            background-color: #000;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+     <!-- Header -->
+    <header class="bg-gray-50 z-50">
+        <div class="container max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html">
+                <img src="img/logo_gt.png" alt="Go!Telecom Logo" class="h-16" onerror="this.onerror=null;this.src='https://placehold.co/240x64/000000/FFFFFF?text=Go!Telecom';">
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="about.html" class="nav-link font-semibold">О компании</a>
+                <a href="services.html" class="nav-link font-semibold">Услуги</a>                
+                <a href="portfolio.html" class="nav-link font-semibold">Проекты</a>
+                <a href="contact.html" class="nav-link font-semibold">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-28">
+            <div class="container max-w-6xl mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-serif max-w-3xl mx-auto tracking-tight">Наши услуги</h1>
+                <p class="max-w-xl mx-auto mt-5 text-base text-gray-700">Полный спектр IT-решений для обеспечения стабильности и роста вашего бизнеса.</p>
+            </div>
+        </section>
+
+        <!-- Services List Section -->
+        <section id="services-list" class="py-20 md:py-28 bg-white reveal">
+            <div class="container max-w-6xl mx-auto px-6">
+                <div class="space-y-20">
+                    <!-- Service 1 -->
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h3 class="font-serif text-2xl mb-4">IT-инфраструктура и аутсорсинг</h3>
+                            <p class="text-gray-600 mb-4">Передайте заботу о вашей IT-инфраструктуре нам. Мы обеспечим бесперебойную работу серверов, компьютеров и сетей, организуем защиту данных и окажем оперативную поддержку вашим сотрудникам.</p>
+                            <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Комплексное обслуживание серверов, сетей и ПК</li>
+                                <li>Проактивный мониторинг для предотвращения сбоев</li>
+                                <li>Оперативная техническая поддержка пользователей</li>
+                                <li>Защита данных и резервное копирование</li>
+                            </ul>
+                            <a href="contact.html" class="btn-dark mt-6">Заказать</a>
+                        </div>
+                        <div>
+                            <img src="img/001.avif" alt="[Команда обсуждает IT-проект]" class="rounded-md shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/FFFFFF?text=Go!Telecom';">
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="md:order-2">
+                            <h3 class="font-serif text-2xl mb-4">Системы видеонаблюдения</h3>
+                             <p class="text-gray-600 mb-4">Мы проектируем и устанавливаем современные системы видеонаблюдения для объектов любой сложности. Обеспечьте безопасность, контролируйте рабочие процессы и получайте удаленный доступ к камерам из любой точки мира.</p>
+                             <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Проектирование систем под любые объекты</li>
+                                <li>Монтаж и настройка аналоговых и IP-камер</li>
+                                <li>Интеграция с системами контроля доступа</li>
+                                <li>Организация удаленного доступа и видеоаналитики</li>
+                            </ul>
+                             <a href="contact.html" class="btn-dark mt-6">Заказать</a>
+                        </div>
+                        <div class="md:order-1">
+                            <img src="img/002.avif" alt="[Камера видеонаблюдения крупным планом]" class="rounded-md shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/FFFFFF?text=Go!Telecom';">
+                        </div>
+                    </div>
+                     <!-- Service 3 -->
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h3 class="font-serif text-2xl mb-4">Локальные сети (ЛВС и СКС)</h3>
+                            <p class="text-gray-600 mb-4">Создаем надежную основу для вашего бизнеса — быстрые и стабильные локальные сети. Выполняем полный цикл работ от проектирования и монтажа кабельных систем до настройки активного сетевого оборудования.</p>
+                            <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Проектирование и монтаж кабельных систем</li>
+                                <li>Настройка сетевого оборудования</li>
+                                <li>Создание проводных и беспроводных сетей</li>
+                                <li>Модернизация и расширение существующих сетей</li>
+                            </ul>
+                             <a href="contact.html" class="btn-dark mt-6">Заказать</a>
+                        </div>
+                        <div>
+                            <img src="img/003.avif" alt="[Сетевое оборудование и кабели]" class="rounded-md shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/FFFFFF?text=Go!Telecom';">
+                        </div>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                         <div class="md:order-2">
+                            <h3 class="font-serif text-2xl mb-4">IT-консалтинг</h3>
+                            <p class="text-gray-600 mb-4">Наши эксперты проведут глубокий аудит вашей IT-инфраструктуры, выявят узкие места и разработают стратегию для ее оптимизации. Мы поможем вам принимать взвешенные решения и эффективно инвестировать в технологии.</p>
+                            <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Полный аудит IT-инфраструктуры</li>
+                                <li>Разработка стратегии цифровой трансформации</li>
+                                <li>Оптимизация расходов на IT</li>
+                                <li>Помощь в выборе оборудования и ПО</li>
+                            </ul>
+                             <a href="contact.html" class="btn-dark mt-6">Заказать</a>
+                        </div>
+                        <div class="md:order-1">
+                           <img src="img/004.avif" alt="[Люди обсуждают стратегию у доски]" class="rounded-md shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/FFFFFF?text=Go!Telecom';">
+                        </div>
+                    </div>
+                     <!-- Service 5 -->
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div>
+                            <h3 class="font-serif text-2xl mb-4">Разработка сайтов</h3>
+                            <p class="text-gray-600 mb-4">Создаем не просто сайты, а эффективные инструменты для бизнеса. Разрабатываем корпоративные порталы, лендинги и интернет-магазины с современным дизайном, адаптивной версткой и удобной системой управления.</p>
+                            <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Создание корпоративных сайтов и лендингов</li>
+                                <li>Разработка интернет-магазинов</li>
+                                <li>Интеграция с CRM и платежными системами</li>
+                                <li>Техническая поддержка и SEO-оптимизация</li>
+                            </ul>
+                             <a href="contact.html" class="btn-dark mt-6">Заказать</a>
+                        </div>
+                        <div>
+                            <img src="img/005.avif" alt="[Изображение кода на экране ноутбука]" class="rounded-md shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/FFFFFF?text=Go!Telecom';">
+                        </div>
+                    </div>
+                     <!-- Service 6 -->
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                         <div class="md:order-2">
+                            <h3 class="font-serif text-2xl mb-4">Искусственный интеллект</h3>
+                            <p class="text-gray-600 mb-4">Откройте новые горизонты для вашего бизнеса с помощью ИИ. Мы помогаем внедрять интеллектуальные решения для автоматизации процессов, анализа данных, создания чат-ботов и получения уникальных конкурентных преимуществ.</p>
+                             <ul class="space-y-2 list-disc list-inside text-gray-600">
+                                <li>Разработка чат-ботов и виртуальных ассистентов</li>
+                                <li>Внедрение систем распознавания образов</li>
+                                <li>Прогнозная аналитика и машинное обучение</li>
+                                <li>Автоматизация бизнес-процессов на базе ИИ</li>
+                            </ul>
+                             <a href="contact.html" class="btn-dark mt-6">Заказать</a>
+                        </div>
+                        <div class="md:order-1">
+                           <img src="img/006.avif" alt="[Абстрактное изображение нейронной сети]" class="rounded-md shadow-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/FFFFFF?text=Go!Telecom';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50">
+        <div class="container max-w-6xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-start text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <a href="index.html" class="text-base font-medium tracking-wider"><span class="font-bold">Go!</span> Telecom</a>
+                    <p class="text-sm text-gray-500 mt-4">© 2009-2025 Go! Telecom.</p>
+                </div>
+                <div class="flex space-x-16">
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="services.html" class="footer-link">Услуги</a></li>
+                        <li><a href="about.html" class="footer-link">О компании</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Проекты</a></li>
+                        <li><a href="contact.html" class="footer-link">Контакты</a></li>
+                    </ul>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="#" class="footer-link">Политика конфиденциальности</a></li>
+                        <li><a href="#" class="footer-link">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="to-top-button" title="Наверх">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+        // --- Back to Top Button ---
+        const toTopButton = document.getElementById('to-top-button');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                toTopButton.style.display = "flex";
+            } else {
+                toTopButton.style.display = "none";
+            }
+        });
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // --- Smooth Section Reveal ---
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(elem => {
+            revealObserver.observe(elem);
+        });
+    </script>
+
+</body>
+</html>

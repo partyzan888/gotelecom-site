@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Go!Telecom</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ccircle%20cx='50'%20cy='50'%20r='50'%20fill='%23111827'/%3E%3Ctext%20x='50%25'%20y='50%25'%20dominant-baseline='middle'%20text-anchor='middle'%20font-family='Lora,%20serif'%20font-size='40'%20font-weight='bold'%20fill='white'%3EGo!%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #111827; /* Gray-900 */
+            font-weight: 400;
+            background-color: #f9fafb; /* Gray-50 */
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Lora', serif;
+        }
+        .btn-dark {
+            background-color: #111827; /* Gray-900 */
+            color: white;
+            padding: 0.625rem 1.25rem; /* 10px 20px */
+            border-radius: 0.25rem;
+            font-weight: 500;
+            font-size: 0.875rem; /* 14px */
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .btn-dark:hover:not(:disabled) {
+            background-color: #000;
+        }
+        .btn-dark:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+            color: #111827;
+            padding-bottom: 4px;
+            font-size: 0.875rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #111827;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        .footer-link {
+            position: relative;
+            text-decoration: none;
+            padding-bottom: 4px;
+            color: #4b5563; /* Gray-600 */
+            font-size: 0.875rem;
+            transition: color 0.3s ease-in-out;
+        }
+        .footer-link:hover {
+            color: #111827;
+        }
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #111827;
+            transition: all 0.3s ease-in-out;
+        }
+        .footer-link:hover::after {
+            width: 100%;
+            left: 0;
+        }
+        /* Анимация появления */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Кнопка "Наверх" */
+        #to-top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #111827;
+            color: white;
+            border: none;
+            border-radius: 0.25rem;
+            width: 44px;
+            height: 44px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        #to-top-button:hover {
+            background-color: #000;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-gray-50 z-50">
+        <div class="container max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html">
+                <img src="img/logo_gt.png" alt="Go!Telecom Logo" class="h-16" onerror="this.onerror=null;this.src='https://placehold.co/240x64/000000/FFFFFF?text=Go!Telecom';">
+            </a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="about.html" class="nav-link font-semibold">О компании</a>
+                <a href="services.html" class="nav-link font-semibold">Услуги</a>                
+                <a href="portfolio.html" class="nav-link font-semibold">Проекты</a>
+                <a href="contact.html" class="nav-link font-semibold">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-28">
+            <div class="container max-w-6xl mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-5xl font-serif max-w-3xl mx-auto tracking-tight">Свяжитесь с нами</h1>
+                <p class="max-w-xl mx-auto mt-5 text-base text-gray-700">Мы всегда готовы ответить на ваши вопросы, обсудить проект или предоставить консультацию.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="py-20 md:py-28 bg-white reveal">
+            <div class="container max-w-6xl mx-auto px-6">
+                <div class="grid md:grid-cols-2 gap-16">
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-semibold mb-2 text-lg">Адрес</h3>
+                            <p class="text-gray-600">г. Краснодар, ул. Монтажников, 1/4, офис 203</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2 text-lg">Телефон</h3>
+                            <p class="text-gray-600"><a href="tel:+79183220290" class="hover:text-black">+7 (918) 322-02-90</a></p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2 text-lg">Email</h3>
+                            <p class="text-gray-600"><a href="mailto:info@gotelecom.ru" class="hover:text-black">info@gotelecom.ru</a></p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2 text-lg">Часы работы</h3>
+                            <p class="text-gray-600">Пн-Пт с 9:00 до 18:00 (МСК)</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold mb-2 text-lg">Техническая поддержка</h3>
+                            <p class="text-gray-600">Круглосуточно</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div id="form-container">
+                        <h2 class="font-serif text-3xl mb-6">Отправьте нам сообщение</h2>
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Ваше имя</label>
+                                    <input type="text" id="name" name="name" placeholder="Иван Петров" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-gray-800 focus:border-gray-800 bg-white">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="you@example.com" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-gray-800 focus:border-gray-800 bg-white">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Тема</label>
+                                <input type="text" id="subject" name="subject" placeholder="Например: Вопрос по ИТ-аутсорсингу" required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-gray-800 focus:border-gray-800 bg-white">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Сообщение</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Расскажите подробнее о вашей задаче..." required class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-gray-800 focus:border-gray-800 bg-white"></textarea>
+                            </div>
+                             <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="privacy" name="privacy" type="checkbox" required class="focus:ring-gray-800 h-4 w-4 text-gray-900 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="privacy" class="text-gray-600">Я согласен с <a href="privacy-policy.html" class="underline hover:text-black">обработкой персональных данных</a></label>
+                                </div>
+                            </div>
+                            <div class="pt-2">
+                                <button id="submit-btn" type="submit" class="btn-dark">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Map Section -->
+        <section class="reveal">
+             <iframe src="https://yandex.ru/map-widget/v1/?ll=38.9311%2C45.0587&z=17&pt=38.9311%2C45.0587,pm2rdl" width="100%" height="450" frameborder="0"></iframe>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50">
+        <div class="container max-w-6xl mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-start text-center md:text-left">
+                <div class="mb-8 md:mb-0">
+                    <a href="index.html" class="text-base font-medium tracking-wider"><span class="font-bold">Go!</span> Telecom</a>
+                    <p class="text-sm text-gray-500 mt-4">© 2009-2025 Go! Telecom. Все права защищены.</p>
+                </div>
+                <div class="flex space-x-16">
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="services.html" class="footer-link">Услуги</a></li>
+                        <li><a href="about.html" class="footer-link">О компании</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Проекты</a></li>
+                        <li><a href="contact.html" class="footer-link">Контакты</a></li>
+                    </ul>
+                    <ul class="space-y-3 text-sm font-semibold">
+                        <li><a href="privacy-policy.html" class="footer-link">Политика конфиденциальности</a></li>
+                        <li><a href="terms-of-use.html" class="footer-link">Условия использования</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <!-- Overlay -->
+        <div id="modal-overlay" class="absolute inset-0 bg-black bg-opacity-50 transition-opacity duration-300 opacity-0"></div>
+        
+        <!-- Modal Content -->
+        <div id="modal-content" class="relative bg-white p-8 rounded-lg shadow-xl text-center transform scale-95 opacity-0 transition-all duration-300 w-full max-w-md">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h3 class="font-serif text-2xl mb-2">Спасибо!</h3>
+            <p class="text-gray-600">Ваша заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.</p>
+        </div>
+    </div>
+
+    <button id="to-top-button" title="Наверх">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11l7-7 7 7M5 19l7-7 7 7"></path></svg>
+    </button>
+
+    <script>
+        // --- Back to Top Button ---
+        const toTopButton = document.getElementById('to-top-button');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                toTopButton.style.display = "flex";
+            } else {
+                toTopButton.style.display = "none";
+            }
+        });
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // --- Smooth Section Reveal ---
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(elem => {
+            revealObserver.observe(elem);
+        });
+
+        // --- Contact Form Logic ---
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const privacyCheckbox = document.getElementById('privacy');
+        const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+
+        // Modal elements
+        const successModal = document.getElementById('success-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+
+        function validateForm() {
+            let allFilled = true;
+            formInputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+            submitBtn.disabled = !allFilled || !privacyCheckbox.checked;
+        }
+
+        formInputs.forEach(input => {
+            input.addEventListener('input', validateForm);
+        });
+        privacyCheckbox.addEventListener('change', validateForm);
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!submitBtn.disabled) {
+                // Show the modal with animation
+                successModal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalOverlay.classList.remove('opacity-0');
+                    modalContent.classList.remove('opacity-0', 'scale-95');
+                }, 10);
+            }
+        });
+
+        function closeModal() {
+            modalOverlay.classList.add('opacity-0');
+            modalContent.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                successModal.classList.add('hidden');
+                contactForm.reset();
+                validateForm();
+            }, 300); // Match the transition duration
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+
+        // Initial validation check
+        validateForm();
+
+    </script>
+
+</body>
+</html>
