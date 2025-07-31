@@ -29,7 +29,7 @@
             border-radius: 0.25rem;
             font-weight: 500;
             font-size: 0.875rem; /* 14px */
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, opacity 0.3s;
             display: inline-block;
         }
         .btn-dark:hover:not(:disabled) {
@@ -38,6 +38,7 @@
         .btn-dark:disabled {
             background-color: #9ca3af;
             cursor: not-allowed;
+            opacity: 0.7;
         }
         .nav-link {
             position: relative;
@@ -205,6 +206,7 @@
                             </div>
                             <div class="pt-2">
                                 <button id="submit-btn" type="submit" class="btn-dark">Отправить</button>
+                                <p id="form-error" class="text-red-600 text-sm mt-2 hidden"></p>
                             </div>
                         </form>
                     </div>
@@ -292,17 +294,21 @@
             revealObserver.observe(elem);
         });
 
-        // --- Contact Form Logic ---
+        // --- Contact Form Logic with Telegram Integration ---
         const contactForm = document.getElementById('contact-form');
         const submitBtn = document.getElementById('submit-btn');
         const privacyCheckbox = document.getElementById('privacy');
         const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+        const formError = document.getElementById('form-error');
 
         // Modal elements
         const successModal = document.getElementById('success-modal');
         const closeModalBtn = document.getElementById('close-modal');
         const modalOverlay = document.getElementById('modal-overlay');
         const modalContent = document.getElementById('modal-content');
+
+        // --- Serverless function endpoint ---
+        const TELEGRAM_SENDER_URL = 'https://gotelecom-site.vercel.app/api/telegram-sender';
 
         function validateForm() {
             let allFilled = true;
@@ -311,6 +317,7 @@
                     allFilled = false;
                 }
             });
+            // The button is enabled only if all fields are filled and the checkbox is checked.
             submitBtn.disabled = !allFilled || !privacyCheckbox.checked;
         }
 
@@ -319,17 +326,70 @@
         });
         privacyCheckbox.addEventListener('change', validateForm);
 
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            if (!submitBtn.disabled) {
-                // Show the modal with animation
-                successModal.classList.remove('hidden');
-                setTimeout(() => {
-                    modalOverlay.classList.remove('opacity-0');
-                    modalContent.classList.remove('opacity-0', 'scale-95');
-                }, 10);
+            if (submitBtn.disabled) return;
+
+            // --- Show loading state ---
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Отправка...';
+            submitBtn.disabled = true;
+            formError.classList.add('hidden');
+            formError.textContent = '';
+
+            // --- Collect form data ---
+            const formData = new FormData(contactForm);
+            const formProps = Object.fromEntries(formData);
+            
+            // --- Format message for Telegram ---
+            const messageText = `
+*Новая заявка с сайта Go!Telecom*
+
+*Имя:* ${formProps.name}
+*Email:* ${formProps.email}
+*Тема:* ${formProps.subject}
+
+*Сообщение:*
+${formProps.message}
+            `;
+
+            try {
+                const response = await fetch(TELEGRAM_SENDER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: messageText }),
+                });
+
+                if (!response.ok) {
+                    // Try to get error message from server response
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || `Ошибка сервера: ${response.status}`);
+                }
+
+                // --- On Success ---
+                showSuccessModal();
+
+            } catch (error) {
+                // --- On Error ---
+                console.error('Ошибка отправки:', error);
+                formError.textContent = `Произошла ошибка: ${error.message}. Попробуйте еще раз.`;
+                formError.classList.remove('hidden');
+            } finally {
+                // --- Reset button state ---
+                submitBtn.textContent = originalBtnText;
+                validateForm(); // Re-check form to set button disabled state correctly
             }
         });
+
+        function showSuccessModal() {
+            successModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalOverlay.classList.remove('opacity-0');
+                modalContent.classList.remove('opacity-0', 'scale-95');
+            }, 10);
+        }
 
         function closeModal() {
             modalOverlay.classList.add('opacity-0');
@@ -344,7 +404,7 @@
         closeModalBtn.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', closeModal);
 
-        // Initial validation check
+        // Initial validation check on page load
         validateForm();
 
     </script>
